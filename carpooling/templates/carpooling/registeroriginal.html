@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Register</title>
+
+<script type="text/javascript">
+ 
+ 	function verifyfname(detail){
+ 		if(detail.value.trim()==""){
+ 			//detail.style.borderColour = "red";
+ 			document.getElementById("confirmfname").innerHTML = "*Required";
+ 			return false;
+ 		}
+ 		else{
+ 			document.getElementById("confirmfname").innerHTML = "";
+ 			return true;
+ 		}
+ 	}
+ 	
+ 	function verifylname(detail){
+ 		if(detail.value.trim()==""){
+ 			document.getElementById("confirmlname").innerHTML = "*Required";
+ 			return false;
+ 		}
+ 		else{
+ 			document.getElementById("confirmlname").innerHTML = "";
+ 			return true;
+ 		}
+ 	}
+ 	
+ 	function verifylemail(detail){
+ 		if(detail.value.trim()==""){
+ 			document.getElementById("confirmemail").innerHTML = "*Required";
+ 			return false;
+ 		}
+ 		else{
+ 			document.getElementById("confirmlemail").innerHTML = "";
+ 			return true;
+ 		}
+ 	}
+ 	
+ 	function verifyusername(detail){
+ 		if(detail.value.trim()==""){
+ 			document.getElementById("confirmusername").innerHTML = "*Required";
+ 			return false;
+ 		}
+ 		else{
+ 			var i;
+ 			var check = {{usernames|safe}};
+ 			for(i=0;{{number}};i++){
+ 				if(detail.value == check[i]){
+ 					document.getElementById("confirmusername").innerHTML = "*Username already exists";
+ 					return false;
+ 				}
+ 			}
+ 			document.getElementById("confirmusername").innerHTML = "";
+ 			return true;
+ 		}
+ 	}
+ 	 	
+	function verifypassword(form){
+		if(form.password.value != form.vpassword.value){
+				document.getElementById("vpassword").value = "";
+				document.getElementById("confirmpassword").innerHTML = "Password Invalid";
+			}
+		else{
+			document.getElementById("confirmpassword").innerHTML = "";
+		}
+	}
+	
+	function validate(){
+		if ((verifyfname(document.getElementById("fname")) && verifylname(document.getElementById("lname")) && verifyusername(document.getElementById("username"))) == true)
+			return true;
+		else return false;
+			
+	}
+</script>
+
+</head>
+<body>
+	<form action = "/carpooling/registration/" id="myform" method = "POST" onsubmit="return validate()">
+	{% csrf_token %}
+	First Name: <input type = "text" name = "fname" id="fname">
+	<span id="confirmfname" class="confirmfname"></span><br>
+	Last Name: <input type = "text" name = "lname" id="lname">
+	<span id="confirmlname" class="confirmlname"></span><br>
+	Email: <input type = "text" name = "email" id="email">
+	<span id="confirmemail" class="confirmemail"></span><br>
+	Username: <input type="text" name="username" id="username">
+	<span id="confirmusername" class="confirmusername"></span><br>
+	Password: <input type="password" name="password" id="password"><br>
+	Verify Password: <input type="password" name="vpassword" id="vpassword" onchange=verifypassword(this.form)>
+	<span id="confirmpassword" class="confirmpassword"></span><br>
+	<input type="submit" value="register">
+	
+	</form>	
+</body>
+</html>

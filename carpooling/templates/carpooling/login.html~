@@ -1,0 +1,269 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>SaveWise Login Page</title>
+<meta name="viewport" content="width=630, initial-scale=1, user-scalable=yes" />
+
+    <style>
+@import url(http://fonts.googleapis.com/css?family=Exo:100,200,400);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
+@media (max-width: 700px) { ... }
+/* Same as last but with the device orientation on land scape */
+@media (max-width: 700px) and (orientation: landscape) { ... }
+/* Including width and orientation you can add a media type clause,
+   in this case 'tv' */
+@media tv and (min-width: 700px) and (orientation: landscape) { ... }
+@media only screen and (min--moz-device-pixel-ratio: 2),
+only screen and (-o-min-device-pixel-ratio: 2/1),
+only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (min-device-pixel-ratio: 2) {
+    -repeat;
+        background-size: 200px 400px;
+    /* rest of your styles... */
+    }
+}
+
+body{
+	margin: 0;
+	padding: 0;
+	background: #fff;
+
+	color: #fff;
+	font-family: Arial;
+	font-size: 12px;
+}
+
+.body{
+	position: absolute;
+	top: -20px;
+	left: -20px;
+	right: -40px;
+	bottom: -40px;
+	width: auto;
+	height: auto;
+	background-image: url("{% static 'carpooling/images/car.jpg' %}");
+	background-size: cover;
+	-webkit-filter: blur(5px);
+	z-index: 0;
+}
+
+.grad{
+	position: absolute;
+	top: -20px;
+	left: -20px;
+	right: -40px;
+	bottom: -40px;
+	width: auto;
+	height: auto;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
+	z-index: 1;
+	opacity: 0.7;
+}
+
+.header{
+	position: absolute;
+	top: calc(2% + 10px);
+	left: calc(2% + 2px);
+	z-index: 2;
+}
+
+.header div{
+	float: left;
+	color: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 60px;
+	font-weight: 200;
+}
+
+.header div span{
+	color: #5379fa !important;
+}
+
+.login{
+	position: absolute;
+	top: calc(50% - 75px);
+	left: calc(50% - 150px);
+	height: 150px;
+	width: 350px;
+	padding: 10px;
+	z-index: 2;
+}
+
+.login input[type=text]{
+	width: 250px;
+	height: 30px;
+	background: transparent;
+	border: 1px solid rgba(255,255,255,0.9);
+	border-radius: 2px;
+	color: #FFFFFF;
+	font-family: 'Exo', sans-serif;
+	font-size: 20px;
+	font-weight: 900;
+	padding: 4px;
+}
+
+.login input[type=password]{
+	width: 250px;
+	height: 30px;
+	background: transparent;
+	border: 1px solid rgba(255,255,255,0.9);
+	border-radius: 2px;
+	color: #FFFFFF;
+	font-family: 'Exo', sans-serif;
+	font-size: 20px;
+	font-weight: 900;
+	padding: 4px;
+	margin-top: 10px;
+}
+
+.login input[type=submit]{
+	width: 260px;
+	height: 35px;
+	background: #fff;
+	border: 1px solid #fff;
+	cursor: pointer;
+	border-radius: 2px;
+	color: #000000;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 6px;
+	margin-top: 10px;
+}
+
+.login input[type=submit]:hover{
+	opacity: 0.8;
+}
+
+.login input[type=submit]:active{
+	opacity: 0.6;
+}
+
+.login input[type=text]:focus{
+	outline: none;
+	border: 1px solid rgba(255,255,255,0.9);
+}
+
+.login input[type=password]:focus{
+	outline: none;
+	border: 1px solid rgba(255,255,255,0.9);
+}
+
+.login input[type=button]:focus{
+	outline: none;
+}
+
+.notauser{
+	position: absolute;
+	top: calc(0% + 25px);
+	left: calc(100% - 225px);
+	/*
+	top: calc(50% - 125px);
+	left: calc(50% - 125px);
+	*/
+	height: 150px;
+	width: 350px;
+	padding: 10px;
+	z-index: 2;
+	position: absolute;
+}
+
+.notauser span{
+	color: #FFFFFF;
+	font-family: 'Exo', sans-serif;
+	font-size: 20px;
+	font-weight: 900;
+	
+}
+
+.notauser input[type=submit]{
+	width: 120px;
+	height: 35px;
+	background: #fff;
+	border: 1px solid #fff;
+	cursor: pointer;
+	border-radius: 2px;
+	color: #000000;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 6px;
+	margin-top: 10px;
+}
+
+
+#header {
+    background:url(medium-density-image.png);
+}
+
+@media screen and (-webkit-device-pixel-ratio: 1.5) {
+    /* CSS for high-density screens */
+    #header {
+        background:url(high-density-image.png);
+    }
+}
+
+@media screen and (-webkit-device-pixel-ratio: 0.75) {
+    /* CSS for low-density screens */
+    #header {
+        background:url(low-density-image.png);
+    }
+}
+
+::-webkit-input-placeholder{
+   color: rgba(255,255,255,0.9);
+}
+
+::-moz-input-placeholder{
+   color: rgba(255,255,255,0.9);
+}
+</style>
+
+    <script>
+    	function check(){
+    		if(document.getElementById("password").value == "")
+    			return false;
+    		if(document.getElementById("username").value == "")
+    			return false;
+    	}
+    </script>
+    
+
+</head>
+
+<body>
+<link rel="stylesheet" media="screen and (-webkit-device-pixel-ratio: 1.5)" href="hdpi.css" />
+<link rel="stylesheet" media="screen and (-webkit-device-pixel-ratio: 1.0)" href="mdpi.css" />
+
+  <div class="body"></div>
+		<div class="grad"></div>
+		<div class="header">
+			<div>Save<span>Wise</span></div>
+		</div>
+		<br>
+		<div class="login">
+				<form action = "/carpooling/menu/" method = "POST" onsubmit="return check()">
+				{% csrf_token %}
+					<input type="text" placeholder="username" name="username" id="username"><br>
+					<input type="password" placeholder="password" name="password" id="password"><br>
+					<input type="submit" value="Login"><br><br>
+				</form>
+		</div>
+		<div class = "notauser">
+				<span> Not a User? </span></br>
+				<form action = "/carpooling/register/" method="POST">
+				{% csrf_token %}
+				<input type = "submit" value="Register">
+				</form> 
+		</div>
+		
+
+  <script src='http://codepen.io/assets/libs/fullpage/jquery.js'></script>
+
+</body>
+
+</html>

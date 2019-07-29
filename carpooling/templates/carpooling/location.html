@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>The most basic form of geolocation</title>
+<script type="text/javascript">
+
+function TestGeo()
+    {
+         if (navigator.geolocation) 
+            {
+              navigator.geolocation.getCurrentPosition( TestMap, error, {maximumAge: 30000, timeout: 10000, enableHighAccuracy: true} );
+        }
+        else
+        {
+              alert("Sorry, but it looks like your browser does not support geolocation.");
+        }
+    }
+
+function TestMap(position) {
+	var latitude = position.coords.latitude;
+	var longitude = position.coords.longitude;
+	
+	alert("Your coordinates are " + latitude + ", " + longitude);
+	}
+	
+function error() {
+		alert("Cannot locate user");
+		}
+</script>
+
+</head>
+<body onload="TestGeo();">
+	
+	
+</body>
+</html>
